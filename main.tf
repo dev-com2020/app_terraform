@@ -18,20 +18,6 @@ resource "aws_security_group" "web_server_sg" {
     description = "Allow http and shh traffic"
     vpc_id = "vpc-0023a48bafb84f43c"
 
-    # ingress = {
-    #     from_port = 22
-    #     to_port = 22
-    #     protocol = "tcp"
-    #     cidr_blocks = ["0.0.0.0/0"]
-    # }
-
-    # ingress = {
-    #     from_port = 443
-    #     to_port = 443
-    #     protocol = "tcp"
-    #     cidr_blocks = ["0.0.0.0/0"]
-    # }
-
     ingress {
         from_port = 80
         to_port = 80
@@ -93,5 +79,8 @@ resource "aws_instance" "web_server" {
   
 }
 
-
-
+resource "aws_s3_bucket" "logging_bucket" {
+    count = var.enable_logging ? 1 : 0
+    bucket = "alx-logging-0"
+  
+}

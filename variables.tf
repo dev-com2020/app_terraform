@@ -17,7 +17,7 @@ variable "instance_count" {
 variable "enable_logging" {
   type = bool
   description = "Czy włączyć logi"
-  default = false
+  default = true
 }
 
 variable "instance_type" {
