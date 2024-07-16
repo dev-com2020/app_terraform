@@ -49,6 +49,7 @@ resource "aws_security_group" "web_server_sg" {
     tags = {
       Name = "web_server_sg"
     }
+
 }
 
 resource "aws_instance" "web_server" {
@@ -75,6 +76,10 @@ resource "aws_instance" "web_server" {
 
     tags = {
       Name = "web_server_${count.index + 1}"
+    }
+
+    lifecycle {
+      create_before_destroy = true
     }
   
 }
