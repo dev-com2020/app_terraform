@@ -10,8 +10,9 @@ terraform {
 
 provider "aws" {
   # Configuration options
-  region = "eu-central-1"
+  region = var.aws_region
 }
+
 resource "aws_vpc" "tomeczkowa" {
     cidr_block = "10.0.0.0/16"
   
