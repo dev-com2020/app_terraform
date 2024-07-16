@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         AWS_ACCESS_KEY_ID     = credentials('aws-access-key-id')
-        AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
+        AWS_SECRET_ACCESS_KEY = credentials('Access Key ID')
         // TF_VAR_vpc_id         = '' // Zamień na ID swojej VPC
         // TF_VAR_ami_id         = '' // Zamień na ID swojego AMI
         TF_VAR_key_name       = 'ALX-2'       // Zamień na nazwę swojego klucza
