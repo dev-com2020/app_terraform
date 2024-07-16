@@ -18,12 +18,12 @@ resource "aws_security_group" "web_server_sg" {
     description = "Allow http and shh traffic"
     vpc_id = "vpc-0023a48bafb84f43c"
 
-    ingress = {
-        from_port = [22,80,443]
-        to_port = [22,80,443]
-        protocol = "tcp"
-        cidr_blocks = ["0.0.0.0/0"]
-    }
+    # ingress = {
+    #     from_port = 22
+    #     to_port = 22
+    #     protocol = "tcp"
+    #     cidr_blocks = ["0.0.0.0/0"]
+    # }
 
     # ingress = {
     #     from_port = 443
@@ -32,14 +32,28 @@ resource "aws_security_group" "web_server_sg" {
     #     cidr_blocks = ["0.0.0.0/0"]
     # }
 
-    # ingress = {
-    #     from_port = 80
-    #     to_port = 80
-    #     protocol = "tcp"
-    #     cidr_blocks = ["0.0.0.0/0"]
-    # }
+    ingress {
+        from_port = 80
+        to_port = 80
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
 
-    egress = {
+    ingress {
+        from_port = 443
+        to_port = 443
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    ingress {
+        from_port = 22
+        to_port = 22
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    egress {
         from_port = 0
         to_port = 0
         protocol = "-1"
@@ -47,14 +61,14 @@ resource "aws_security_group" "web_server_sg" {
     }
 
     tags = {
-      Name = "web_server_sg${instance_count}"
+      Name = "web_server_sg"
     }
 }
 
 resource "aws_instance" "web_server" {
     count = 2
     ami = var.ami_id
-    instance_type = "t2-micro"
+    instance_type = "t2.micro"
     security_groups = [aws_security_group.web_server_sg.name]
 
     provisioner "remote-exec" {
