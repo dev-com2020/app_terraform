@@ -54,7 +54,7 @@ resource "aws_security_group" "web_server_sg" {
 
 resource "aws_instance" "web_server" {
     count = 2
-    ami = var.ami_id
+    ami = "ami-0e872aee57663ae2d"
     instance_type = "t2.micro"
     security_groups = [aws_security_group.web_server_sg.name]
     key_name = "ALX-2"
