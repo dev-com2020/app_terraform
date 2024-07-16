@@ -21,4 +21,7 @@ resource "aws_instance" "example" {
   for_each = toset(var.instance_type)
   ami = var.ami_id
   instance_type = each.value
+  tags = {
+    Name = "Instancja-${each.key}"
+  }
 }
