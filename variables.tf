@@ -1,6 +1,6 @@
-variable "aws_acces_key" {}
+# variable "aws_acces_key" {}
 
-variable "aws_secret_key" {}
+# variable "aws_secret_key" {}
 
 variable "aws_region" {
   type = string
@@ -20,10 +20,10 @@ variable "enable_logging" {
   default = false
 }
 
-variable "instance_types" {
+variable "instance_type" {
     type = list(string)
     description = "Lista typów instancji EC2"
-    default = [ "t2.micro", "t2.nano" ]
+    default = ["t2.micro"]
 }
 
 variable "tags" {
@@ -51,5 +51,11 @@ variable "config_values" {
     type = tuple([string,number,bool])
     description = "Konfiguracja"
     default = [ "config", 10, true ]
+}
+
+variable "ami_id" {
+    description = "ID obrazu AMI"
+    type = string
+    default = ""
 }
 
