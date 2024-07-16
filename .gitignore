@@ -1,5 +1,2 @@
-/access.log
-/error.log
-/other_vhosts_access.log
-/razor
+/terraform
 /terraform.exe
