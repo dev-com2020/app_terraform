@@ -59,20 +59,20 @@ resource "aws_instance" "web_server" {
     security_groups = [aws_security_group.web_server_sg.name]
     key_name = "ALX-2"
 
-    provisioner "remote-exec" {
-        inline = [ 
-            "sudo apt-get update",
-            "sudo apt-get install -y nginx",
-         ]
+  #   provisioner "remote-exec" {
+  #       inline = [ 
+  #           "sudo apt-get update",
+  #           "sudo apt-get install -y nginx",
+  #        ]
     
-    connection {
-        type     = "ssh"
-        user     = "ubuntu"
-        private_key = file("ALX-2.pem")
-        host     = self.public_ip
-  }
+  #   connection {
+  #       type     = "ssh"
+  #       user     = "ubuntu"
+  #       private_key = file("ALX-2.pem")
+  #       host     = self.public_ip
+  # }
       
-    }
+    
 
     tags = {
       Name = "web_server_${count.index + 1}"
